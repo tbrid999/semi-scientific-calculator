@@ -1,18 +1,18 @@
 const calcDisplay = document.getElementById("display");
-const clacNumber = document.querySelectorAll(".number");
-const clacOperator = document.querySelectorAll(".operator");
-const clacEqual = document.querySelector(".equal");
+const calcNumber = document.querySelectorAll(".number");
+const calcOperator = document.querySelectorAll(".operator");
+const calcEqual = document.querySelector(".equal");
 const calcAC = document.querySelector(".ac");
 
 // Event listeners for number buttons
-clacNumber.forEach(button => {
+calcNumber.forEach(button => {
     button.addEventListener('click', () => {
         calcDisplay.value += button.textContent; 
     });
 });
 
 // Event listeners for operator buttons (including ^ and √ for power and square root)
-clacOperator.forEach(button => {
+calcOperator.forEach(button => {
     button.addEventListener('click', () => {
         const operator = button.textContent;
         const lastChar = calcDisplay.value.slice(-1);
@@ -25,18 +25,18 @@ clacOperator.forEach(button => {
 });
 
 // Event listener for equals button
-clacEqual.addEventListener('click', () => {
+calcEqual.addEventListener('click', () => {
     try {
         let expression = calcDisplay.value;
 
         // Handle power operator (^)
         expression = expression.replace(/(\d+)\^(\d+)/g, (match, base, exponent) => {
-            return Math.pow(${base}, ${exponent});
+            return Math.pow(base, exponent);
         });
 
         // Handle square root (√)
         expression = expression.replace(/√(\d+)/g, (match, number) => {
-            return Math.sqrt(${number});
+            return Math.sqrt(number);
         });
 
         // Evaluate the modified expression
